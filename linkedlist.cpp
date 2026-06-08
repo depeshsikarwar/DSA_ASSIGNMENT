@@ -1,0 +1,200 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* next;
+
+    Node(int x) {
+        data = x;
+        next = NULL;
+    }
+};
+
+class LinkedList {
+public:
+    Node* head;
+
+    LinkedList() {
+        head = NULL;
+    }
+
+    // Insert in Front
+    void insertFront(int x) {
+        Node* temp = new Node(x);
+        temp->next = head;
+        head = temp;
+    }
+
+    // Insert in End
+    void insertEnd(int x) {
+        Node* temp = new Node(x);
+
+        if (head == NULL) {
+            head = temp;
+            return;
+        }
+
+        Node* curr = head;
+
+        while (curr->next != NULL) {
+            curr = curr->next;
+        }
+
+        curr->next = temp;
+    }
+
+    // Insert in Position (1-based indexing)
+    void insertPosition(int pos, int x) {
+        if (pos == 1) {
+            insertFront(x);
+            return;
+        }
+
+        Node* curr = head;
+
+        for (int i = 1; i < pos - 1 && curr != NULL; i++) {
+            curr = curr->next;
+        }
+
+        if (curr == NULL)
+            return;
+
+        Node* temp = new Node(x);
+
+        temp->next = curr->next;
+        curr->next = temp;
+    }
+
+    // Delete Front
+    void deleteFront() {
+        if (head == NULL)
+            return;
+
+        Node* temp = head;
+        head = head->next;
+
+        delete temp;
+    }
+
+    // Delete Last
+    void deleteLast() {
+        if (head == NULL)
+            return;
+
+        if (head->next == NULL) {
+            delete head;
+            head = NULL;
+            return;
+        }
+
+        Node* curr = head;
+
+        while (curr->next->next != NULL) {
+            curr = curr->next;
+        }
+
+        delete curr->next;
+        curr->next = NULL;
+    }
+
+    // Delete Position
+    void deletePosition(int pos) {
+        if (head == NULL)
+            return;
+
+        if (pos == 1) {
+            deleteFront();
+            return;
+        }
+
+        Node* curr = head;
+
+        for (int i = 1; i < pos - 1 && curr != NULL; i++) {
+            curr = curr->next;
+        }
+
+        if (curr == NULL || curr->next == NULL)
+            return;
+
+        Node* temp = curr->next;
+        curr->next = temp->next;
+
+        delete temp;
+    }
+
+    // Search
+    bool search(int key) {
+        Node* curr = head;
+
+        while (curr != NULL) {
+            if (curr->data == key)
+                return true;
+
+            curr = curr->next;
+        }
+
+        return false;
+    }
+
+    // Length
+    int length() {
+        int cnt = 0;
+
+        Node* curr = head;
+
+        while (curr != NULL) {
+            cnt++;
+            curr = curr->next;
+        }
+
+        return cnt;
+    }
+
+    // Display
+    void display() {
+        Node* curr = head;
+
+        while (curr != NULL) {
+            cout << curr->data << " ";
+            curr = curr->next;
+        }
+
+        cout << endl;
+    }
+};
+
+int main() {
+
+    LinkedList l;
+
+    l.insertFront(20);
+    l.insertFront(10);
+
+    l.insertEnd(30);
+    l.insertEnd(40);
+
+    l.display();
+
+    l.insertPosition(3, 25);
+    l.display();
+
+    l.deleteFront();
+    l.display();
+
+    l.deleteLast();
+ 
+    l.display();
+
+    l.deletePosition(2);
+   
+    l.display();
+
+    cout << "Length = " << l.length() << endl;
+
+    cout << "Search 25: " << l.search(25) << endl;
+    cout << "Search 30: " << l.search(30) << endl;
+
+    return 0;
+}
