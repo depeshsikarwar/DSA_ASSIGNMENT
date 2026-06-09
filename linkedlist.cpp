@@ -20,14 +20,14 @@ public:
         head = NULL;
     }
 
-    // Insert in Front
+    
     void insertFront(int x) {
         Node* temp = new Node(x);
         temp->next = head;
         head = temp;
     }
 
-    // Insert in End
+  
     void insertEnd(int x) {
         Node* temp = new Node(x);
 
@@ -45,7 +45,7 @@ public:
         curr->next = temp;
     }
 
-    // Insert in Position (1-based indexing)
+    
     void insertPosition(int pos, int x) {
         if (pos == 1) {
             insertFront(x);
@@ -67,7 +67,7 @@ public:
         curr->next = temp;
     }
 
-    // Delete Front
+    
     void deleteFront() {
         if (head == NULL)
             return;
@@ -78,7 +78,7 @@ public:
         delete temp;
     }
 
-    // Delete Last
+   
     void deleteLast() {
         if (head == NULL)
             return;
@@ -99,7 +99,7 @@ public:
         curr->next = NULL;
     }
 
-    // Delete Position
+    
     void deletePosition(int pos) {
         if (head == NULL)
             return;
@@ -124,7 +124,7 @@ public:
         delete temp;
     }
 
-    // Search
+    
     bool search(int key) {
         Node* curr = head;
 
@@ -138,7 +138,7 @@ public:
         return false;
     }
 
-    // Length
+   
     int length() {
         int cnt = 0;
 
@@ -152,7 +152,7 @@ public:
         return cnt;
     }
 
-    // Display
+    
     void display() {
         Node* curr = head;
 
@@ -177,7 +177,7 @@ int main() {
 
     l.display();
 
-    l.insertPosition(3, 25);
+    l.insertPosition(3, 27);
     l.display();
 
     l.deleteFront();
