@@ -1,0 +1,44 @@
+//Q1
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	int n;
+	cin>>n;
+	if(n%5==0){
+	    cout<<"No";
+	}
+	else{
+	    cout<<"Yes";
+	}
+    return 0;
+}
+
+//Q2
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	// your code goes here
+    int t;
+    cin>>t;
+    while(t--){
+        int n,m;
+        cin>>n>>m;
+        string a;
+        cin>>a;
+        string b;
+        cin>>b;
+        string ans="";
+        int j=min(n,m);
+        for(int i=0;i<j;i++){
+            if(a[i]!=b[i]){
+                break;
+            }
+            ans=ans+a[i];
+        }
+        cout<<ans<<endl;
+        
+    }
+    return 0;
+}
